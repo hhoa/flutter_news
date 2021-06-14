@@ -9,7 +9,7 @@ class SplashPage extends GetView<GetxController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: AppLogo(),
+        child: Hero(tag: "app_logo", child: AppLogo()),
       ),
     );
   }

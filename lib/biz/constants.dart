@@ -1,3 +1,4 @@
 class Constants {
-  static const USER_KEY = 'com.user.key';
+  static const USERNAME_KEY = 'com.user.key';
+  static const USER_PASS_KEY = 'com.user_pass.key';
 }
