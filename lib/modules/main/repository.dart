@@ -6,7 +6,7 @@ abstract class IMainRepository {
   Future<void> getNews(
       {int page = 1,
       int pageSize = 10,
-      String? query,
+      Map<String, String>? query,
       required String path,
       required DataRequest<ListNewsModel> dataRequest});
 }
@@ -20,7 +20,7 @@ class MainRepository extends IMainRepository {
   Future<void> getNews(
       {int page = 1,
       int pageSize = 10,
-      String? query,
+      Map<String, String>? query,
       required String path,
       required DataRequest<ListNewsModel> dataRequest}) async {
     Map<String, dynamic> queryParams = {
@@ -29,7 +29,7 @@ class MainRepository extends IMainRepository {
       'apiKey': '316d1c95744b4cd0ae8bd8f1008520d9'
     };
     if (query != null) {
-      queryParams['q'] = query;
+      queryParams.addAll(query);
     }
     await _apiService.requestApi(
       '/$path',

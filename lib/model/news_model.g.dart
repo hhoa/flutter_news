@@ -27,9 +27,9 @@ Map<String, dynamic> _$ListNewsModelToJson(ListNewsModel instance) =>
 NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
   return NewsModel(
     source: NewsSource.fromJson(json['source'] as Map<String, dynamic>),
-    author: json['author'] as String,
+    author: json['author'] as String?,
     title: json['title'] as String,
-    description: json['description'] as String,
+    description: json['description'] as String?,
     url: json['url'] as String,
     urlToImage: json['urlToImage'] as String?,
     publishedAt: DateTime.parse(json['publishedAt'] as String),

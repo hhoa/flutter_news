@@ -38,7 +38,7 @@ class MainPage extends GetView<MainController> {
       case 0:
         return ForYouPage();
       case 1:
-        return HeadlinePage();
+        return HeadlinesPage();
       case 2:
         return AccountPage();
       default:

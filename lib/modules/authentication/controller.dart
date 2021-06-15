@@ -142,7 +142,7 @@ class AuthenticationController extends GetxController
 
   Future<void> goToMain() async {
     await GetStorage().write(Constants.USERNAME_KEY, _usernameController.value);
-    Get.toNamed(Routes.MAIN);
+    Get.offAllNamed(Routes.MAIN);
   }
 
   @override

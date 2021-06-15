@@ -9,4 +9,6 @@ class AssetColors {
 
   static Color colorBlack333333 = Color(0xff333333);
 
+  static Color colorGreyF2F5F7 = Color(0xffF2F5F7);
+  static Color colorBlack081F42 = Color(0xff081F42);
 }

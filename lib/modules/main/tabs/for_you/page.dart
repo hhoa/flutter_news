@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/language/string_manager.dart';
 import 'package:flutter_news/modules/main/tabs/widgets/list_news.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class ForYouPage extends GetView {
             SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               sliver: SliverAppBar(
-                title: const Text('Everything'),
+                title: Text(StringManager.everything.tr),
                 floating: true,
                 snap: true,
                 forceElevated: innerBoxIsScrolled,
@@ -40,7 +41,7 @@ class ForYouPage extends GetView {
                 key: PageStorageKey("everything-${e.text}"),
                 keyText: "everything-${e.text}",
                 path: "everything",
-                query: e.text,
+                query: {'q': e.text!},
               ))
           .toList(),
     );

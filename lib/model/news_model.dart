@@ -25,9 +25,9 @@ class ListNewsModel {
 @JsonSerializable()
 class NewsModel {
   NewsSource source;
-  String author;
+  String? author;
   String title;
-  String description;
+  String? description;
   String url;
   String? urlToImage;
   DateTime publishedAt;

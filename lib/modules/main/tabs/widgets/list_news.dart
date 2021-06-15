@@ -1,18 +1,23 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/widgets/common_network_image.dart';
 import 'package:flutter_news/common/widgets/common_shimmer.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
 import 'package:flutter_news/model/news_model.dart';
+import 'package:flutter_news/modules/details/page.dart';
 import 'package:flutter_news/modules/main/tabs/widgets/controller.dart';
 import 'package:flutter_news/theme/fonts.dart';
-import 'package:flutter_news/theme/images.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ListNews extends GetView {
   late final ControllerListNews controller;
 
-  ListNews({Key? key, required String path, required String keyText, String? query}) : super(key: key) {
+  ListNews(
+      {Key? key,
+      required String path,
+      required String keyText,
+      Map<String, String>? query})
+      : super(key: key) {
     controller = Get.put(ControllerListNews(path, query), tag: keyText);
   }
 
@@ -38,8 +43,8 @@ class ListNews extends GetView {
           },
           child: ListView.separated(
             physics: const ClampingScrollPhysics(),
-            padding: EdgeInsets.only(top: 32,
-                left: 16, right: 16, bottom: Get.bottomBarHeight + 16),
+            padding: EdgeInsets.only(
+                top: 32, left: 16, right: 16, bottom: Get.bottomBarHeight + 16),
             itemBuilder: (context, index) {
               if (controller.listNewsModelValue == null) {
                 return _buildShimmerItem();
@@ -119,50 +124,35 @@ class ListNews extends GetView {
     return ClipRRect(
       borderRadius: BorderRadius.circular(6),
       clipBehavior: Clip.antiAlias,
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.2)
-        ),
-        child: Column(
-          children: [
-            _buildImage(model.urlToImage),
-            buildHeight(16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSource(model.source.name, model.publishedAt),
-                  buildHeight(16),
-                  Text(
-                    model.title,
-                    style: AssetFonts.bold(),
-                  ),
-                ],
-              ),
-            )
-          ],
+      child: InkWell(
+        onTap: () {
+          Get.to(() => NewsDetailPage(model));
+        },
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 16),
+          decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2)),
+          child: Column(
+            children: [
+              CommonNetworkImage(model.urlToImage ?? ""),
+              buildHeight(16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSource(model.source.name, model.publishedAt),
+                    buildHeight(16),
+                    Text(
+                      model.title,
+                      style: AssetFonts.bold(),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget _buildImage(String? url) {
-    Widget placeholder() {
-      return Image.asset(
-        AssetImages.imgPlaceholder,
-        height: 200,
-        fit: BoxFit.cover,
-      );
-    }
-    return CachedNetworkImage(
-      imageUrl: url ?? "",
-      errorWidget: (_, __, ___) => placeholder(),
-      placeholder: (_, __) => placeholder(),
-      width: double.maxFinite,
-      height: 200,
-      fit: BoxFit.cover,
     );
   }
 

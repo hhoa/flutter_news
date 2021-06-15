@@ -7,7 +7,7 @@ class ControllerListNews extends GetxController {
   MainRepository _repository = MainRepository(apiService: Get.find());
 
   late String path;
-  String? query;
+  Map<String, String>? query;
   int currentPage = 1;
   int pageSize = 20;
   bool isLastPage = false;
