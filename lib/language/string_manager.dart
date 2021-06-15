@@ -13,4 +13,8 @@ class StringManager {
   static const String wrongUsernamePassword = "Username or Password is incorrect";
   static const String duplicateUsername = "Username already exists";
   static const String usernameHintText = "Username cannot have space";
+
+  static const String forYou = "For You";
+  static const String headline = "Headlines";
+  static const String account = "Account";
 }

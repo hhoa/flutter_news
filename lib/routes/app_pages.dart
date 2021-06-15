@@ -2,6 +2,7 @@ import 'package:flutter_news/modules/authentication/controller.dart';
 import 'package:flutter_news/modules/authentication/page.dart';
 import 'package:flutter_news/modules/main/controller.dart';
 import 'package:flutter_news/modules/main/page.dart';
+import 'package:flutter_news/modules/main/repository.dart';
 import 'package:flutter_news/modules/splash/controller.dart';
 import 'package:flutter_news/modules/splash/page.dart';
 import 'package:get/get.dart';
@@ -32,6 +33,8 @@ abstract class AppPages {
       transition: Transition.fadeIn,
       page: () => MainPage(),
       bindings: [
+        BindingsBuilder(() => Get.lazyPut<IMainRepository>(
+                () => MainRepository(apiService: Get.find()))),
         BindingsBuilder(() =>
             Get.put<MainController>(MainController())),
       ],
