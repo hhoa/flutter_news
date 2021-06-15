@@ -35,7 +35,7 @@ class CommonButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: backgroundColor,
         textStyle: AssetFonts.medium(
-            color: textColor ?? Colors.black, fontSize: textSize),
+            color: textColor ?? Colors.white, fontSize: textSize),
         shadowColor: Colors.black,
         elevation: haveShadow ? 4 : 0,
         shape:
@@ -61,7 +61,7 @@ class CommonButton extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: AssetFonts.medium(
-            color: textColor ?? Colors.black, fontSize: textSize),
+            color: textColor ?? Colors.white, fontSize: textSize),
       ),
     );
   }
